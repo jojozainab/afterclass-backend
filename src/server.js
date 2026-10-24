@@ -6,6 +6,8 @@ const { connectDatabase } = require('./db/connection');
 const orderRoutes = require('./routes/orders');
 const lessonRoutes = require('./routes/lessons');
 const searchRoutes = require('./routes/search');
+const teacherRoutes = require('./routes/teachers');
+const { ObjectId } = require('mongodb');
 const logger = require('./middleware/logger');
 
 const app = express();
@@ -27,6 +29,7 @@ app.use('/images', (req, res) => {
 app.use('/orders', orderRoutes);
 app.use('/lessons', lessonRoutes);
 app.use('/search', searchRoutes);
+app.use('/teachers', teacherRoutes);
 
 // A simple route for checking that the starter server is running.
 app.get('/', (req, res) => {
@@ -34,8 +37,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/lessons', async (req, res) => {
+  const teacherId = req.query.teacherId;
+  if (teacherId !== undefined && (typeof teacherId !== 'string' || !/^[a-fA-F0-9]{24}$/.test(teacherId))) {
+    return res.status(400).json({ error: 'Invalid teacher ID.' });
+  }
   try {
-    const lessons = await app.locals.database.collection('lesson').find({}).toArray();
+    const filter = teacherId ? { teacherId: new ObjectId(teacherId) } : {};
+    const lessons = await app.locals.database.collection('lesson').find(filter).toArray();
     res.json(lessons);
   } catch {
     res.status(500).json({ error: 'Unable to retrieve lessons. Please try again.' });

@@ -1,5 +1,9 @@
 # AfterClass API
 
+## Teachers: Phase 9
+
+`GET /teachers` returns Atlas teacher records sorted by last and first name. `GET /lessons?teacherId=000000000000000000000001` returns lessons linked to that teacher through ObjectId references. Omitting teacherId still returns all lessons; malformed IDs return 400 and a valid but unmatched ID returns an empty array. Both endpoints await user testing.
+
 ## Server-side search: Phase 8
 
 `GET /search?q=...` returns lessons matching literal, case-insensitive substrings in topic, location, price or space. MongoDB performs the filtering: numeric fields are converted to strings inside the query. Empty or whitespace-only search returns all lessons; no matches return an empty array. Query text is limited to 100 characters and regex metacharacters are escaped. Repeated/structured q parameters return 400. Database errors return 500.
