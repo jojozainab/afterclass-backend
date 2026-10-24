@@ -29,4 +29,22 @@ The server connects using one native MongoDB client before listening. Missing or
 3. Check HTTP 200 and 10 lessons with the expected topic, location, numeric price and numeric space values. Initially every space value should be 5. ObjectIds are returned as string IDs in the API JSON.
 4. Save the request as `Get all lessons` in an `AfterClass API` collection.
 
-Order creation and lesson update routes will be added next. The Atlas connection and GET route still require local verification with your private configuration.
+The user has confirmed the Atlas connection and GET route work in Postman. Lesson updates will be added next.
+
+## Create an order
+
+Send `POST http://localhost:3000/orders` with a JSON body:
+
+```json
+{
+  "name": "Zainab",
+  "phone": "07123456789",
+  "items": [{ "lessonId": "100000000000000000000001", "quantity": 1 }]
+}
+```
+
+Expected: HTTP 201 with a confirmation message and `orderId`. Verify the saved record in the `order` collection. Lesson references are stored as ObjectIds and phone numbers as strings to preserve leading zeros.
+
+Manual negative checks: names containing digits, phones containing letters, empty items, quantity 0, malformed IDs and repeated lesson IDs return 400. A well-formed but nonexistent lesson ID returns 404. Quantity 6 for a lesson with 5 spaces returns 409. These requests must not create orders. Save requests in your `AfterClass API` Postman collection.
+
+This route checks current availability and saves the order; the separate coursework PUT request will update lesson spaces afterward. These operations are not an atomic reservation and do not yet prevent concurrent overselling or duplicate retries. Each successful POST creates a new order, so submit the positive test only once. This new route awaits user testing.

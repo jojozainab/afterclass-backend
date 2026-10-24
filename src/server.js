@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { connectDatabase } = require('./db/connection');
+const orderRoutes = require('./routes/orders');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,7 @@ app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173' })
 
 // Convert incoming JSON request bodies into JavaScript objects.
 app.use(express.json());
+app.use('/orders', orderRoutes);
 
 // A simple route for checking that the starter server is running.
 app.get('/', (req, res) => {
