@@ -17,10 +17,8 @@ const port = process.env.PORT || 3000;
 // Register first so API, image, preflight and invalid requests are logged.
 app.use(logger);
 
-// Allow the Vue development server to make requests to this API.
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173' }));
 
-// Convert incoming JSON request bodies into JavaScript objects.
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 // Static middleware calls next() when a file is missing.
@@ -33,7 +31,6 @@ app.use('/search', searchRoutes);
 app.use('/teachers', teacherRoutes);
 app.use('/enrolment', enrolmentRoutes);
 
-// A simple route for checking that the starter server is running.
 app.get('/', (req, res) => {
   res.json({ message: 'AfterClass API is running' });
 });

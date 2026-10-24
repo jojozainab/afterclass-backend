@@ -29,8 +29,6 @@ router.put("/:id", async (req, res) => {
         .status(400)
         .json({ error: "Invalid or protected lesson attribute." });
     }
-    // Existing lesson attributes have defined types. Additional scalar attributes
-    // are supported so this route is not restricted to availability changes.
     if (
       value === null ||
       !["string", "number", "boolean"].includes(typeof value)
