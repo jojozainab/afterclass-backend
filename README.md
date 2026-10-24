@@ -1,5 +1,11 @@
 # AfterClass API
 
+## Enrolment: Phase 10
+
+`GET /enrolment/:lessonid` returns `{"lessonId":"...","enrolment":1}` for an existing lesson. It sums matching item quantities across the `order` collection, using ObjectId references. It does not calculate `5 - space`, since available spaces can be set independently using PUT. Existing lessons with no orders return enrolment 0. Malformed IDs return 400; nonexistent lesson IDs return 404; database failures return 500.
+
+Save a Postman request named Get lesson enrolment. Verify its result by summing quantities for that lesson in Atlas orders, including earlier Postman test orders. Test a purchased lesson, a lesson with no orders, `/enrolment/invalid` (400), and `/enrolment/ffffffffffffffffffffffff` (404, provided that ID is absent). If existing orders include a quantity greater than one, verify that all those slots are counted, rather than one per order. These tests await user execution.
+
 ## Teachers: Phase 9
 
 `GET /teachers` returns Atlas teacher records sorted by last and first name. `GET /lessons?teacherId=000000000000000000000001` returns lessons linked to that teacher through ObjectId references. Omitting teacherId still returns all lessons; malformed IDs return 400 and a valid but unmatched ID returns an empty array. Both endpoints await user testing.

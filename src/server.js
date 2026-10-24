@@ -7,6 +7,7 @@ const orderRoutes = require('./routes/orders');
 const lessonRoutes = require('./routes/lessons');
 const searchRoutes = require('./routes/search');
 const teacherRoutes = require('./routes/teachers');
+const enrolmentRoutes = require('./routes/enrolment');
 const { ObjectId } = require('mongodb');
 const logger = require('./middleware/logger');
 
@@ -30,6 +31,7 @@ app.use('/orders', orderRoutes);
 app.use('/lessons', lessonRoutes);
 app.use('/search', searchRoutes);
 app.use('/teachers', teacherRoutes);
+app.use('/enrolment', enrolmentRoutes);
 
 // A simple route for checking that the starter server is running.
 app.get('/', (req, res) => {
