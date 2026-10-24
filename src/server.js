@@ -5,6 +5,7 @@ require('dotenv').config();
 const { connectDatabase } = require('./db/connection');
 const orderRoutes = require('./routes/orders');
 const lessonRoutes = require('./routes/lessons');
+const searchRoutes = require('./routes/search');
 const logger = require('./middleware/logger');
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/images', (req, res) => {
 });
 app.use('/orders', orderRoutes);
 app.use('/lessons', lessonRoutes);
+app.use('/search', searchRoutes);
 
 // A simple route for checking that the starter server is running.
 app.get('/', (req, res) => {

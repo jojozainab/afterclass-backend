@@ -1,5 +1,11 @@
 # AfterClass API
 
+## Server-side search: Phase 8
+
+`GET /search?q=...` returns lessons matching literal, case-insensitive substrings in topic, location, price or space. MongoDB performs the filtering: numeric fields are converted to strings inside the query. Empty or whitespace-only search returns all lessons; no matches return an empty array. Query text is limited to 100 characters and regex metacharacters are escaped. Repeated/structured q parameters return 400. Database errors return 500.
+
+Save Postman requests for `/search?q=math`, `/search?q=HEND`, `/search?q=25`, `/search?q=4`, `/search?q=zzzznotfound`, `/search?q=%5B` and `/search?q=`. Compare numeric matches with current Atlas values: a numeric query can match price or availability. Expect 200 arrays, including an empty array for no matches; brackets are literal text, not regex syntax. These checks await user testing.
+
 ## Request logging and lesson images
 
 The logger runs before other middleware. Each request produces an incoming log and, on response completion, a log containing the HTTP method, original URL, response status and elapsed milliseconds. Timestamps use UTC. Request bodies and credentials are not logged; do not put secrets in request URLs.
