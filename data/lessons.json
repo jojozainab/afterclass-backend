@@ -1,0 +1,12 @@
+[
+  { "_id": { "$oid": "100000000000000000000001" }, "topic": "Mathematics", "location": "Hendon", "price": 25, "space": 5, "image": "/images/mathematics.jpg", "teacherId": { "$oid": "000000000000000000000001" } },
+  { "_id": { "$oid": "100000000000000000000002" }, "topic": "Science", "location": "Colindale", "price": 30, "space": 5, "image": "/images/science.jpg", "teacherId": { "$oid": "000000000000000000000001" } },
+  { "_id": { "$oid": "100000000000000000000003" }, "topic": "English", "location": "Brent Cross", "price": 22, "space": 5, "image": "/images/english.jpg", "teacherId": { "$oid": "000000000000000000000002" } },
+  { "_id": { "$oid": "100000000000000000000004" }, "topic": "Creative Writing", "location": "Hendon", "price": 24, "space": 5, "image": "/images/creative-writing.jpg", "teacherId": { "$oid": "000000000000000000000002" } },
+  { "_id": { "$oid": "100000000000000000000005" }, "topic": "Art", "location": "Golders Green", "price": 20, "space": 5, "image": "/images/art.jpg", "teacherId": { "$oid": "000000000000000000000003" } },
+  { "_id": { "$oid": "100000000000000000000006" }, "topic": "Music", "location": "Colindale", "price": 28, "space": 5, "image": "/images/music.jpg", "teacherId": { "$oid": "000000000000000000000003" } },
+  { "_id": { "$oid": "100000000000000000000007" }, "topic": "Coding", "location": "Hendon", "price": 35, "space": 5, "image": "/images/coding.jpg", "teacherId": { "$oid": "000000000000000000000004" } },
+  { "_id": { "$oid": "100000000000000000000008" }, "topic": "Robotics", "location": "Brent Cross", "price": 40, "space": 5, "image": "/images/robotics.jpg", "teacherId": { "$oid": "000000000000000000000004" } },
+  { "_id": { "$oid": "100000000000000000000009" }, "topic": "Football", "location": "Golders Green", "price": 18, "space": 5, "image": "/images/football.jpg", "teacherId": { "$oid": "000000000000000000000005" } },
+  { "_id": { "$oid": "100000000000000000000010" }, "topic": "Drama", "location": "Colindale", "price": 26, "space": 5, "image": "/images/drama.jpg", "teacherId": { "$oid": "000000000000000000000005" } }
+]
