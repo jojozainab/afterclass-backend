@@ -1,17 +1,18 @@
-# Initial Atlas data
+# Initial Atlas Data
 
-Use these files only for the initial population of the empty `afterclass` database:
+These files record the initial data for my `afterclass` database.
 
-- `teachers.json` goes into the singular `teacher` collection (5 documents).
-- `lessons.json` goes into the singular `lesson` collection (10 documents).
-- Leave `order` empty until booking tests.
+| File | Atlas collection | Initial records |
+| --- | --- | --- |
+| `teachers.json` | `teacher` | Five teachers |
+| `lessons.json` | `lesson` | Ten lessons with five spaces each |
 
-These are MongoDB Extended JSON files. `$oid` represents a MongoDB ObjectId. Import using an Extended JSON-aware tool such as Atlas Data Explorer or MongoDB Compass; plain `JSON.parse()` alone does not convert these wrappers to ObjectIds.
+The order collection was initially empty. Initial enrolment was therefore zero, and total initial availability was 50 spaces.
 
-Each lesson's `teacherId` matches a teacher `_id`. Each teacher teaches two lessons. `price` and `space` must remain numbers. Every lesson starts with 5 spaces, so total initial availability is 50. Initial enrolment is 0 because there are no orders; enrolment will be calculated from purchased quantities in order records.
+The files use MongoDB Extended JSON. `$oid` represents a MongoDB ObjectId; each lesson's teacherId matches one teacher's `_id`. Each teacher is associated with two lessons. Price and space values are numeric, with fictional prices displayed in GBP.
 
-The image fields are planned API paths. Image files and static serving will be added in Phase 4; these paths do not serve images yet. The sample prices are fictional amounts, planned for display in GBP.
+The image paths correspond to the JPEG title cards served by the Express API from `public/images`.
 
-After import, verify the document counts, field types, initial spaces and teacher references. Do not insert the files twice: their fixed IDs will cause duplicate-key errors. Do not reset availability or delete bookings to repeat an import once real order testing begins.
+I inserted these records into Atlas and verified the record counts, availability and ObjectId relationships. The fixed IDs make repeated insertion produce duplicate-key errors. Current Atlas availability and orders reflect later booking tests, while these fixtures preserve the original state.
 
-These files are initial fixtures, not the final database exports required for submission. Export the actual Atlas collections during Phase 12.
+These files are initial fixtures, not exports of the current database. The current collection exports are a separate submission item whose preparation is tracked in the submission checklist.
