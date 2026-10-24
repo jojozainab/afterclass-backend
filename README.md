@@ -1,5 +1,21 @@
 # AfterClass API
 
+## Request logging and lesson images
+
+The logger runs before other middleware. Each request produces an incoming log and, on response completion, a log containing the HTTP method, original URL, response status and elapsed milliseconds. Timestamps use UTC. Request bodies and credentials are not logged; do not put secrets in request URLs.
+
+`/images` serves files from `public/images` using Express static middleware with an absolute directory path. A missing image returns HTTP 404 with `{"error":"Lesson image not found."}`.
+
+From Windows Command Prompt in the back-end folder, generate the ten original JPEG lesson title cards with:
+
+```cmd
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/create-lesson-images.ps1
+```
+
+The execution policy option applies only to this PowerShell process. The script creates missing files and preserves existing images. Commit the resulting JPEGs so they are available on Render without needing PowerShell on the server.
+
+Manual verification: open `/images/mathematics.jpg`, confirm HTTP 200 and `Content-Type: image/jpeg` in Postman, and inspect the image in a browser. Request `/images/not-found.jpg` and verify HTTP 404 with the JSON message. Check the terminal for incoming and completed logs for successful images, missing images and `/lessons`. The user confirmed these checks passed. Also test the other nine lesson image URLs before deployment.
+
 Node.js and Express starter for the AfterClass coursework back-end.
 
 ## Local setup

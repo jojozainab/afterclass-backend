@@ -1,18 +1,28 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 const { connectDatabase } = require('./db/connection');
 const orderRoutes = require('./routes/orders');
 const lessonRoutes = require('./routes/lessons');
+const logger = require('./middleware/logger');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Register first so API, image, preflight and invalid requests are logged.
+app.use(logger);
 
 // Allow the Vue development server to make requests to this API.
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173' }));
 
 // Convert incoming JSON request bodies into JavaScript objects.
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, '../public/images')));
+// Static middleware calls next() when a file is missing.
+app.use('/images', (req, res) => {
+  res.status(404).json({ error: 'Lesson image not found.' });
+});
 app.use('/orders', orderRoutes);
 app.use('/lessons', lessonRoutes);
 
