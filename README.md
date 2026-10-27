@@ -15,27 +15,27 @@ This repository contains the Node.js/Express back-end of my AfterClass coursewor
 
 The local configuration is held in an ignored `.env` file. `.env.example` contains placeholders. Atlas credentials are kept on the server and are not included in the Vue application.
 
-| Variable | Purpose |
-| --- | --- |
-| `MONGODB_URI` | Private Atlas connection string |
-| `MONGODB_DB` | Database name, `afterclass` |
+| Variable          | Purpose                                                                |
+| ----------------- | ---------------------------------------------------------------------- |
+| `MONGODB_URI`     | Private Atlas connection string                                        |
+| `MONGODB_DB`      | Database name, `afterclass`                                            |
 | `FRONTEND_ORIGIN` | Allowed browser origin; production uses `https://jojozainab.github.io` |
-| `PORT` | Listening port; Render supplies its production value |
+| `PORT`            | Listening port; Render supplies its production value                   |
 
 Local installation uses `npm ci`. `npm start` starts the server; `npm run dev` watches the source folder for changes. The server connects to Atlas before accepting requests and reuses a single MongoDB client. Atlas network access includes the relevant development IP and Render outbound ranges.
 
 ## API routes
 
-| Method | Path | Behaviour |
-| --- | --- | --- |
-| GET | `/` | API status message |
-| GET | `/lessons` | All lessons; optional teacherId filtering |
-| POST | `/orders` | Validates and saves an order |
-| PUT | `/lessons/:id` | Sets supplied editable lesson attributes |
-| GET | `/search?q=...` | Multi-attribute server-side lesson search |
-| GET | `/teachers` | Teachers sorted by last name and first name |
-| GET | `/enrolment/:lessonid` | Purchased slot count from order quantities |
-| GET | `/images/:filename` | Static image, or JSON error with HTTP 404 |
+| Method | Path                   | Behaviour                                   |
+| ------ | ---------------------- | ------------------------------------------- |
+| GET    | `/`                    | API status message                          |
+| GET    | `/lessons`             | All lessons; optional teacherId filtering   |
+| POST   | `/orders`              | Validates and saves an order                |
+| PUT    | `/lessons/:id`         | Sets supplied editable lesson attributes    |
+| GET    | `/search?q=...`        | Multi-attribute server-side lesson search   |
+| GET    | `/teachers`            | Teachers sorted by last name and first name |
+| GET    | `/enrolment/:lessonid` | Purchased slot count from order quantities  |
+| GET    | `/images/:filename`    | Static image, or JSON error with HTTP 404   |
 
 ### Orders
 
@@ -83,10 +83,10 @@ Express static middleware serves `public/images` through `/images`. A missing im
 
 Initial fixtures contain five teachers and ten lessons with five spaces each. Current Atlas records reflect test bookings. The fixtures in `data/` document the initial state and are distinct from final database exports.
 
-I tested the routes in Postman, checked stored records in Atlas, inspected request logs and verified image delivery and missing-image errors. I tested the deployed API with the GitHub Pages application. Final export and packaging tasks are tracked in the project submission checklist.
+I tested the routes in Postman, checked stored records in Atlas, inspected request logs and verified image delivery and missing-image errors. I tested the deployed API with the GitHub Pages application. Final export and packaging tasks remain part of submission preparation.
 
 ## Acknowledgement and limitations
 
-I used ChatGPT/Codex for implementation, explanations, debugging, deployment guidance and documentation. The final handbook-format declaration remains part of submission preparation.
+I used ChatGPT for explanations, debugging, deployment guidance and documentation. The final handbook-format declaration remains part of submission preparation.
 
 POST saves an order, while a separate PUT updates availability. These operations are not atomic and can produce inconsistent availability during concurrent checkouts. Repeated successful POST requests create separate orders. The front-end includes an in-memory recovery path for failed PUT requests after an order is saved.

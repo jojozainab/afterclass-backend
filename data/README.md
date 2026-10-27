@@ -15,4 +15,4 @@ The image paths correspond to the JPEG title cards served by the Express API fro
 
 I inserted these records into Atlas and verified the record counts, availability and ObjectId relationships. The fixed IDs make repeated insertion produce duplicate-key errors. Current Atlas availability and orders reflect later booking tests, while these fixtures preserve the original state.
 
-These files are initial fixtures, not exports of the current database. The current collection exports are a separate submission item whose preparation is tracked in the submission checklist.
+These files are initial fixtures, not exports of the current database. Current collection exports are a separate submission item.

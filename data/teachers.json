@@ -1,7 +1,27 @@
 [
-  { "_id": { "$oid": "000000000000000000000001" }, "firstName": "Sarah", "lastName": "Ahmed" },
-  { "_id": { "$oid": "000000000000000000000002" }, "firstName": "James", "lastName": "Wilson" },
-  { "_id": { "$oid": "000000000000000000000003" }, "firstName": "Amina", "lastName": "Bello" },
-  { "_id": { "$oid": "000000000000000000000004" }, "firstName": "Daniel", "lastName": "Chen" },
-  { "_id": { "$oid": "000000000000000000000005" }, "firstName": "Grace", "lastName": "Taylor" }
+  {
+    "_id": { "$oid": "000000000000000000000001" },
+    "firstName": "Sarah",
+    "lastName": "Ahmed"
+  },
+  {
+    "_id": { "$oid": "000000000000000000000002" },
+    "firstName": "James",
+    "lastName": "Wilson"
+  },
+  {
+    "_id": { "$oid": "000000000000000000000003" },
+    "firstName": "Amina",
+    "lastName": "Bello"
+  },
+  {
+    "_id": { "$oid": "000000000000000000000004" },
+    "firstName": "Daniel",
+    "lastName": "Chen"
+  },
+  {
+    "_id": { "$oid": "000000000000000000000005" },
+    "firstName": "Grace",
+    "lastName": "Taylor"
+  }
 ]
